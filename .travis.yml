@@ -1,0 +1,21 @@
+language: php
+
+php:
+  - 7.1
+
+sudo: false
+
+cache:
+   directories:
+     - $HOME/.composer/cache/files
+
+before_script:
+    - if [[ "$(php --version | grep -cim1 xdebug)" -ge 1 ]]; then phpenv config-rm xdebug.ini; fi
+
+script:
+    - php psh.phar init
+    - php psh.phar unit
+
+notifications:
+    email: false
+    irc: "chat.freenode.net#shopware-dev"
